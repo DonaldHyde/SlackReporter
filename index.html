@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scrum Report</title>
+
+    <style type="text/css">
+        @font-face {
+            font-family: 'SF Sports Night';
+            src: url('./slack/less/SFSportsNight.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        #content {
+            position: absolute;
+            top: 0px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            padding-top: 10px;
+            box-sizing: border-box;
+            -webkit-user-select: none;
+            -webkit-app-region: drag;
+            background-color: #80E65E;
+        }
+
+        .titlebar {
+            -webkit-user-select: none;
+            -webkit-app-region: drag;
+            height: 22px;
+            top: 0;
+            left: 0;
+            right: 0;
+            position: absolute;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- <div class="titlebar" ></div> -->
+    <div id="content"></div>
+</body>
+<script src="http://localhost:8080/webpack-dev-server.js"></script>
+<script src="http://localhost:8080/built/bundle.js"></script>
+</html>
