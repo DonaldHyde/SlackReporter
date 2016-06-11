@@ -2,9 +2,9 @@
   "name": "electron-demo",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "app.js",
   "scripts": {
-    "start": "electron main.js",
+    "start": "electron app.js",
     "watch": "webpack-dev-server",
     "electron-rebuild": "electron-rebuild",
     "build": "electron-packager . --platform=darwin"

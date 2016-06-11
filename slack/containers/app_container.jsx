@@ -16,20 +16,10 @@ const defaultState = {
 const message = {
     "username": "Donald Hyde's Scrum Bot",
     "icon_emoji": ":dhyde:",
-    "channel": "@dhyde_sm",
-    // "channel": "#dailyproductscrum",
-    "attachments": [],
-    "text": "Message",
-};
-
-const attachment = {
-    // "title": "Daily Scrum Report",
-    "pretext": "*Daily Scrum Report*",
-    "text": "Message",
-    "mrkdwn_in": [
-        "text",
-        "pretext"
-    ]
+    // "channel": "@dhyde_sm",
+    "channel": "#dailyproductscrum",
+    "mrkdwn": true,
+    "text": "Message"
 };
 
 class AppContainer extends React.Component {
@@ -40,39 +30,43 @@ class AppContainer extends React.Component {
     }
 
     updateYesterday (input) {
-        this.setState({ yesterday: input.trim() });
-        this.updateMessage();
+        this.setState({ yesterday: input });
     }
 
     updateToday (input) {
-        this.setState({ today: input.trim() });
-        this.updateMessage();
+        this.setState({ today: input });
     }
 
     updateBlockers (input) {
-        this.setState({ blockers: input.trim() });
-        this.updateMessage();
+        this.setState({ blockers: input });
     }
 
-    updateMessage () {
-        const blockers = this.state.blockers !== '' ? ('*Blockers:* ' + this.state.blockers) : '*No Blockers*';
-        this.setState({ text: `*Yesterday:* ${this.state.yesterday}\n*Today:* ${this.state.today}\n${blockers}` });
+    getMessageText () {
+        let message = '*Daily Scrum Report*\n';
+        message += `>>>*Yesterday:* ${this.state.yesterday}\n`;
+        message += `*Today:* ${this.state.today}\n`;
+        message += (this.state.blockers.trim() !== '') ?
+            ('*Blockers:* ' + this.state.blockers) :
+            '*No Blockers*';
+
+        return message;
     }
 
     sendUpdate () {
-        if (this.state.yesterday.trim() !== '' && this.state.today.trim() !== '') {
-            Axios.post(
-                'https://hooks.slack.com/services/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',
-                Object.assign({}, message, //{
-                    // attachments: [
-                        Object.assign({}, attachment, { text: this.state.text })
-                    //]
-                //}
-                )
-            );
-            this.setState(defaultState);
-            this.render();
-        }
+        // Axios.post(
+        //     'https://hooks.slack.com/services/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',
+        //     Object.assign({}, message, { text: this.getMessageText() })
+        // ).then(() => {
+        //     this.reset();
+        // }).catch(() => {
+        //     console.log('Failed to send!');
+        // });
+        console.log('Posting disabled...');
+    }
+
+    reset () {
+        this.setState(defaultState);
+        this.render();
     }
 
     render () {
